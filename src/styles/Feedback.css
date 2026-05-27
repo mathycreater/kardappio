@@ -1,0 +1,18 @@
+.cart-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  margin-bottom: 32px;
+}
+
+.cart-warning {
+  background-color: #ff4d4d;
+  color: white;
+
+  padding: 10px 16px;
+
+  border-radius: 8px;
+
+  font-weight: 600;
+}

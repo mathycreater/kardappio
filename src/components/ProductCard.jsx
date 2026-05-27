@@ -1,6 +1,6 @@
 import '../styles/ProductCard.css'
 
-function ProductCard({ product }) {
+function ProductCard({ product, addToCart }) {
   return (
     <div className="product-card">
 
@@ -17,7 +17,7 @@ function ProductCard({ product }) {
           R$ {product.price.toFixed(2)}
         </p>
 
-        <button>
+        <button onClick ={() => addToCart(product)}>
           Adicionar
         </button>
 

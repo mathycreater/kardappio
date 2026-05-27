@@ -3,7 +3,7 @@ import ProductCard from './ProductCard'
 
 import '../styles/Products.css'
 
-function Products() {
+function Products({ addToCart }) {
   return (
     <section className="products">
 
@@ -21,6 +21,7 @@ function Products() {
           <ProductCard
             key={product.id}
             product={product}
+            addToCart={addToCart}
           />
         ))}
 
