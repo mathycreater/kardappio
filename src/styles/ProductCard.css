@@ -50,3 +50,18 @@
 
   cursor: pointer;
 }
+
+@media (max-width: 768px) {
+
+  .product-card img {
+    height: 220px;
+  }
+
+  .product-info {
+    padding: 20px;
+  }
+
+  .product-info h3 {
+    font-size: 1.2rem;
+  }
+}

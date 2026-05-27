@@ -52,3 +52,41 @@
 
   font-size: 2rem;
 }
+
+@media (max-width: 768px) {
+
+  .cart {
+    padding: 40px 20px;
+  }
+  .cart-item {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 16px;
+  }
+
+  .cart-actions {
+    width: 100%;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 12px;
+  }
+
+  .cart-actions button {
+    width: 100%;
+  }
+
+  .cart-total {
+    font-size: 1.5rem;
+  }
+
+  .cart-header {
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+}

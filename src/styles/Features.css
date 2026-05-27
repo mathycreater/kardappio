@@ -57,3 +57,18 @@
 
   line-height: 1.6;
 }
+
+@media (max-width: 768px) {
+
+  .features {
+    padding: 40px 20px;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-card {
+    padding: 24px;
+  }
+}

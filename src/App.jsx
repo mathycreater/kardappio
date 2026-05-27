@@ -7,6 +7,7 @@ import Hero from './components/Hero'
 import Features from './components/Features'
 import Products from './components/Products'
 import Cart from './components/Cart'
+import Footer from './components/Footer'
 import './styles/Feedback.css'
 
 function App() {
@@ -106,6 +107,7 @@ function App() {
         removeFromCart={removeFromCart}
         cartMessage={cartMessage}
       />
+      <Footer />
     </>
   )
 }

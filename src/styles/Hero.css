@@ -80,3 +80,34 @@
 
   object-fit: cover;
 }
+
+@media (max-width: 768px) {
+
+  .hero {
+    flex-direction: column;
+
+    text-align: center;
+
+    padding: 40px 20px;
+
+    gap: 40px;
+  }
+  
+  .hero-content h1 {
+    font-size: 2rem;
+
+    line-height: 1.2;
+
+    padding: 50px 20px;
+  }
+
+  .hero-content p {
+    margin-top: -40px;
+    font-size: 1rem;
+  }
+
+  .hero-image img {
+    width: 100%;
+    max-width: 300px;
+  }
+}
