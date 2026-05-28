@@ -8,6 +8,7 @@ const products = [
     name: 'Burger Clássico',
     price: 32.90,
     image: burgerClassico,
+    extras: ['Carne mal passada', 'Ao ponto', 'Bem passada'],
   },
 
   {
@@ -15,6 +16,7 @@ const products = [
     name: 'Pizza Especial',
     price: 54.90,
     image: pizzaEspecial,
+    extras: ['Borda de catupiry', 'Borda de cheddar'],
   },
 
   {
@@ -22,6 +24,7 @@ const products = [
     name: 'Combo Sushi',
     price: 72.90,
     image: comboSushi,
+    extras: ['Temaki tradicional', 'Temaki hot'],
   },
 ]
 

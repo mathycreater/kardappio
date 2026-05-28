@@ -1,10 +1,10 @@
-import '../styles/Features.css'
+import styles from './Features.module.css'
 
 function Features() {
   return (
-    <section className="features">
+    <section id="features" className={styles.features}>
 
-      <div className="features-title">
+      <div className={styles['features-title']}>
         <h2>Soluções inteligentes para restaurantes</h2>
 
         <p>
@@ -12,9 +12,9 @@ function Features() {
         </p>
       </div>
 
-      <div className="features-grid">
+      <div className={styles['features-grid']}>
 
-        <div className="feature-card">
+        <div className={styles['feature-card']}>
           <h3>Integração de Pedidos</h3>
 
           <p>
@@ -22,7 +22,7 @@ function Features() {
           </p>
         </div>
 
-        <div className="feature-card">
+        <div className={styles['feature-card']}>
           <h3>Gestão Operacional</h3>
 
           <p>
@@ -30,7 +30,7 @@ function Features() {
           </p>
         </div>
 
-        <div className="feature-card">
+        <div className={styles['feature-card']}>
           <h3>Dashboard Inteligente</h3>
 
           <p>

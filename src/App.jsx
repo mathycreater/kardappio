@@ -1,113 +1,50 @@
-import { useState } from 'react'
+import { Routes, Route } from 'react-router-dom'
+import { useCart } from './hooks/useCart'
 
-import './App.css'
+import Navbar from './components/Navbar/Navbar'
+import Hero from './components/Hero/Hero'
+import Features from './components/Features/Features'
+import Products from './components/Products/Products'
+import Cart from './components/Cart/Cart'
+import Footer from './components/Footer/Footer'
+import { Checkout } from './pages/Checkout/Checkout'
 
-import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import Features from './components/Features'
-import Products from './components/Products'
-import Cart from './components/Cart'
-import Footer from './components/Footer'
-import './styles/Feedback.css'
-
-function App() {
-
-  const [cartItems, setCartItems] = useState([])
-  const [cartMessage, setCartMessage] = useState("")
-
-  function getTotalItems(cart) {
-    return cart.reduce((total, item) => total + item.quantity, 0)
-  }
-  
-  function showCartMessage(msg) {
-    setCartMessage(msg)
-
-    setTimeout(() => {
-      setCartMessage("")
-    }, 2500)
-  }
-
-  function clearCartMessage(){
-    setCartMessage("")
-  }
-
-  function addToCart(product) {
-
-  const existingItem = cartItems.find(
-    (item) => item.id === product.id
-  )
-
-  const totalItems = getTotalItems(cartItems)
-
-  if (totalItems >= 10) {
-    showCartMessage("Limite de pedidos atingido")
-    return
-  }
-
-  let updatedCart
-
-  if (existingItem) {
-
-    updatedCart = cartItems.map((item) =>
-      item.id === product.id
-        ? { ...item, quantity: item.quantity + 1 }
-        : item
-    )
-
-  } else {
-
-    updatedCart = [
-      ...cartItems,
-      { ...product, quantity: 1 },
-    ]
-  }
-
-  setCartItems(updatedCart)
-  clearCartMessage()
-}
-  function removeFromCart(productId) {
-
-    const existingItem = cartItems.find(
-      (item) => item.id === productId
-    )
-
-    if (!existingItem) return
-
-    let updatedCart
-
-    if (existingItem.quantity > 1) {
-
-      updatedCart = cartItems.map((item) =>
-        item.id === productId
-          ? { ...item, quantity: item.quantity - 1 }
-          : item
-      )
-
-    } else {
-
-      updatedCart = cartItems.filter(
-        (item) => item.id !== productId
-      )
-    }
-
-    setCartItems(updatedCart)
-    clearCartMessage()
-  }
-
+function Home({ cartItems, addToCart, removeFromCart, cartMessage }) {
   return (
     <>
-      <Navbar />
       <Hero />
       <Features />
-
       <Products addToCart={addToCart} />
-
       <Cart
         cartItems={cartItems}
         removeFromCart={removeFromCart}
         cartMessage={cartMessage}
       />
       <Footer />
+    </>
+  )
+}
+
+function App() {
+  const { cartItems, cartMessage, addToCart, removeFromCart } = useCart()
+
+  return (
+    <>
+      <Navbar />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Home
+              cartItems={cartItems}
+              addToCart={addToCart}
+              removeFromCart={removeFromCart}
+              cartMessage={cartMessage}
+            />
+          }
+        />
+        <Route path="/checkout" element={<Checkout cartItems={cartItems} />} />
+      </Routes>
     </>
   )
 }

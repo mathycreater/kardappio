@@ -1,13 +1,13 @@
-import products from '../data/products'
-import ProductCard from './ProductCard'
+import products from '../../data/products'
+import ProductCard from '../ProductCard/ProductCard'
 
-import '../styles/Products.css'
+import styles from './Products.module.css'
 
 function Products({ addToCart }) {
   return (
-    <section className="products">
+    <section id="products" className={styles.products}>
 
-      <div className="products-title">
+      <div className={styles['products-title']}>
         <h2>Produtos em destaque</h2>
 
         <p>
@@ -15,7 +15,7 @@ function Products({ addToCart }) {
         </p>
       </div>
 
-      <div className="products-grid">
+      <div className={styles['products-grid']}>
 
         {products.map((product) => (
           <ProductCard
