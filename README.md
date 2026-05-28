@@ -1,18 +1,58 @@
-# React + Vite
+# Desafio Técnico - Kardappio (Full Stack)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este repositório contém a solução desenvolvida para a avaliação técnica. O projeto está dividido em duas partes: Desenvolvimento Frontend e Arquitetura de Integração.
 
-Currently, two official plugins are available:
+## Como Executar o Projeto
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Para rodar a aplicação na sua máquina, basta usar os comandos abaixo:
 
-## React Compiler
+```bash
+git clone https://github.com/seu-usuario/seu-repositorio.git
+cd seu-repositorio
+npm install
+npm run dev
+```
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## Decisões Técnicas e Prevenções (Frontend)
 
-Note: This will impact Vite dev & build performances.
+Durante o desenvolvimento da aplicação (Tarefa 1), algumas decisões arquiteturais e preventivas foram adotadas para melhorar a manutenção, escalabilidade, performance e a estabilidade.
 
-## Expanding the ESLint configuration
+### Gerenciamento Local de Imagens
+As imagens do catálogo foram baixadas e armazenadas localmente no projeto ao invés de utilizar hotlinks externos. 
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Objetivos:
+* evitar indisponibilidade caso URLs externas parem de funcionar;
+* reduzir dependência de terceiros;
+* melhorar a estabilidade visual da aplicação.
+
+Além disso, as imagens foram comprimidas utilizando ferramentas como TinyJPG para otimizar o tempo de carregamento e a experiência mobile.
+
+### Estrutura Preparada para Personalização
+A modelagem dos produtos foi pensada para futura expansão de adicionais, observações, personalizações, ponto da carne e ingredientes opcionais. Cada produto pode possuir sua própria estrutura de configuração, evitando conflitos entre os dados.
+
+### Organização Modular e Isolamento de Estilos
+Os componentes foram reorganizados em estrutura modular (ex: components/Cart, components/Hero, etc). 
+Os arquivos CSS também foram organizados por componente, reduzindo risco de conflitos globais de estilo. 
+Benefícios: menor risco de colisão de classes e maior previsibilidade visual.
+
+### Utilização de Custom Hooks e Service Layer
+Hooks customizados (useCart, useApi) foram criados para separar a lógica da camada de renderização.
+A comunicação assíncrona foi separada em uma camada de serviços (services/api.js).
+Isso ajuda a desacoplar o frontend da origem dos dados e facilita futuras integrações com um backend real.
+
+### Preparação para Integrações Futuras
+O projeto foi planejado considerando possíveis integrações:
+* APIs de estoque e CEP/IBGE;
+* cálculo de frete;
+* autenticação;
+* gateways de pagamento.
+
+
+## Tarefa 2: Pipeline de Integração
+
+A documentação da pipeline, diagramas e banco de dados pode ser encontrada nos arquivos abaixo:
+
+* [Documentação do Pipeline](./integration-flow/flow-documentation.md)
+* [Queries SQL Utilizadas](./integration-flow/queries.sql)
+* [Esquema do Banco de Dados](./database-schema.md)
+* [Documentação da API](./api-documentation.md)

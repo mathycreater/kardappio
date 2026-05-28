@@ -1,9 +1,11 @@
-import products from '../../data/products'
+import { useProducts } from './useProducts'
 import ProductCard from '../ProductCard/ProductCard'
 
 import styles from './Products.module.css'
 
 function Products({ addToCart }) {
+  const { products, loading } = useProducts()
+
   return (
     <section id="products" className={styles.products}>
 
@@ -15,17 +17,23 @@ function Products({ addToCart }) {
         </p>
       </div>
 
-      <div className={styles['products-grid']}>
+      {loading ? (
+        <div className={styles.loading}>
+          <div className={styles.spinner}></div>
+        </div>
+      ) : (
+        <div className={styles['products-grid']}>
 
-        {products.map((product) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-            addToCart={addToCart}
-          />
-        ))}
+          {products.map((product) => (
+            <ProductCard
+              key={product.id}
+              product={product}
+              addToCart={addToCart}
+            />
+          ))}
 
-      </div>
+        </div>
+      )}
     </section>
   )
 }
