@@ -1,6 +1,6 @@
-# Desafio Técnico - Kardappio
+# Desafio Técnico FullStack
 
-Este é o repositório da minha solução para a avaliação técnica. O projeto engloba o frontend da aplicação e o desenho da arquitetura de integração.
+Este é o repositório da minha solução para a avaliação técnica. O projeto engloba o frontend da aplicação e o desenho da arquitetura de integração. Criei um E-commerce fictício para restaurantes. Um protótipo que poderia ser expandido para um Saas de cardápios ou ser utilizado como site completo de delivery.
 
 ## Como rodar localmente
 
@@ -21,7 +21,7 @@ Para simular um cenário real de e-commerce, optei por não usar um Context API 
 **Componentização e Rotas**
 As páginas foram separadas dos componentes visuais. Isolei o roteamento no `routes.jsx` para não poluir o `App.jsx` e mantive os hooks próximos de onde são realmente usados (colocation) para facilitar a leitura projeto.
 
-Obs: Eu particularmente decidi não usar o padrão estrito de Smart e Dumb (Onde só a página é inteligente e repassa tudo via propriedades), apesar de iniciar o projeto com isso em mente e depois ter mudado de ideia. Apesar de ser o padrão de ouro na época do Redux, se eu seguisse o padrão estrito para esse teste, a minha página Home.jsx teria que ser a "Smart", obrigada a importar os dados do carrinho, função de deletar item, apenas para repasse via props para dentro de <Cart /> e do <ProductCard />. Entraríamos ai na geração do Prop Drilling. A Home ficaria gigantesca, gerenciando estados que ela nem usa.
+Obs: Eu particularmente decidi não usar o padrão estrito de Smart e Dumb (Onde só a página é inteligente e repassa tudo via propriedades), apesar de iniciar o projeto com isso em mente e depois ter mudado de ideia. Apesar de ser o padrão de ouro na época do Redux, se eu seguisse o padrão estrito para esse teste, a minha página Home.jsx teria que ser a "Smart", obrigada a importar os dados do carrinho, função de deletar item, apenas para repasse via props para dentro de Cart e do ProductCard. Entraríamos ai na geração do Prop Drilling. A Home ficaria gigantesca, gerenciando estados que ela nem usa.
 
 **Estilização**
 Optei por CSS Modules (`.module.css`). Assim, o estilo de um botão não vai vazar e quebrar o layout de outra tela. Tudo dentro de Components ao inves de separados em uma pasta Style.

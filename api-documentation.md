@@ -1,6 +1,12 @@
-# Documentação da API
+# Documentação da API (Destino da Integração)
 
-Este documento contém os endpoints da API, requisições e exemplos de respostas. A API é mockada para fins de avaliação, simulando o destino final do pipeline.
+> ** NOTA DE ARQUITETURA E ESCOPO:**
+> É importante diferenciar as duas simulações presentes neste projeto de avaliação:
+> 
+> 1. **Frontend (React App):** Utiliza uma API mockada internamente (via custom hooks e `localStorage`) apenas para simular latência de rede e persistência visual do carrinho de compras para o usuário.
+> 2. **Pipeline de Integração (ETL):** Os endpoints documentados abaixo pertencem a um **sistema externo fictício**. Eles representam o destino final para onde a nossa ferramenta de integração (Smartconnector/N8N) envia os dados extraídos do banco de dados relacional.
+
+Este documento foca exclusivamente na **camada de integração**, contendo os endpoints, requisições e respostas esperadas do sistema externo.
 
 ## Endpoints
 
