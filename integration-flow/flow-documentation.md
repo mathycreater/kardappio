@@ -1,5 +1,7 @@
 # Documentação do Pipeline - Kardappio
 
+**Diagrama Visual (Online):** [Acessar fluxograma interativo no Lucidchart](https://lucid.app/lucidchart/a3d71668-62d0-4a85-961b-11a43f90b538/edit?beaconFlowId=A8FBE403E4B8E950&page=0_0&invitationId=inv_a02f660e-cda5-4e14-870f-87f2a77b416a#)
+
 ## Visão Geral
 Este documento descreve a estrutura que foi construída para extrair pedidos com status confirmado de um banco de dados relacional. O pipeline processa, valida, filtra e transforma esses dados, enviando no final para uma API REST externa. O fluxo foi estruturado de forma compatível com plataformas de integração visual como N8N ou SmartConnector, facilitando futuras automações e expansões.
 
@@ -14,12 +16,6 @@ Este documento descreve a estrutura que foi construída para extrair pedidos com
 - Custom Hooks
 - Service Layer
 - Vite
-
-
-## Diagrama Visual
-O desenho arquitetural da estrutura pode ser acessado pelo link abaixo:
-
-> [Link será inserido na conclusão]
 
 
 ## Detalhamento das Etapas
@@ -56,16 +52,16 @@ Objetivo: Garantir a integridade básica dos dados antes do processamento.
 * Remove pedidos que vieram sem itens associados (linhas órfãs).
 * Remove itens onde a quantidade seja menor ou igual a zero.
 
-### Etapa 3: Validação de Regras de Negócio
-Tipo: Validation / Logic Node
-Objetivo: Aplicar as regras de negócio do sistema.
-* Limite de Itens: Verifica se o somatório das quantidades do pedido excede o limite máximo (ex: 10 itens). Se exceder, a etapa direciona o registro para falha.
 
-### Etapa 4: Enriquecimento de Dados
+### Etapa 3: Enriquecimento de Dados
 Tipo: API Request / Enrichment Node
-Objetivo: Adicionar dados externos necessários para a finalização do pedido.
-* Validação de CEP/Área de Entrega: Conexão com a API do IBGE (ou serviços de geolocalização) utilizando os dados de endereço do cliente para validar se a região possui cobertura de entrega ativa.
-* Consulta de Estoque: Consulta paralela à API GET /estoque/{produto_id} para garantir a disponibilidade.
+Objetivo: Adicionar dados externos necessários para a verificação do pedido. A etapa faz uma consulta paralela à API `GET /estoque/{produto_id}` para buscar as informações atualizadas de inventário de cada item.
+
+### Etapa 4: Validação de Regra de Negócio (Decisão)
+Tipo: Validation / Switch Node
+Objetivo: Tomar uma decisão baseada nos dados enriquecidos na Etapa 3. O nó verifica se o estoque disponível atende à quantidade do pedido.
+* Caminho "Sim" (Estoque OK): O pedido é válido e o fluxo avança para a próxima etapa.
+* Caminho "Não" (Sem Estoque): O pedido é barrado e direcionado a um nó de Log de Erro, finalizando o processo para este pedido.
 
 ### Etapa 5: Transformação (Mapeamento de Dados)
 Tipo: Transform / Mapper Node
@@ -121,6 +117,6 @@ O formato final recebido pela API:
 
 Para garantir a resiliência, a estrutura tem tratamentos específicos para cenários de falha:
 
-* Dados Incompletos: Se um pedido não tiver cliente válido ou a validação do IBGE falhar, a etapa descarta o pedido e salva no log de exceptions.
+* Dados Incompletos: Se um pedido não tiver cliente válido ou a validação do CEP falhar, a etapa descarta o pedido e salva no log de exceptions.
 * Falha de Validação: Pedidos que excedem o limite de itens ou não têm estoque ficam pendentes para revisão manual.
 * Erros de API (Timeouts ou 500): O processo foi estruturado para suportar controles de estado e prevenção de duplicidade em cenários de instabilidade de rede.

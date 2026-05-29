@@ -43,6 +43,8 @@ function Footer() {
       <div className={styles['footer-bottom']}>
         <p>
           © 2026 Kardappio. Todos os direitos reservados.
+          <br />
+          Desenvolvido por: Matheus Corrêa @Mathycreater
         </p>
       </div>
 

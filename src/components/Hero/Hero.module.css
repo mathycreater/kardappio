@@ -106,6 +106,10 @@
     font-size: 1rem;
   }
 
+  .hero-buttons {
+    justify-content: center;
+  }
+
   .hero-image img {
     width: 100%;
     max-width: 300px;

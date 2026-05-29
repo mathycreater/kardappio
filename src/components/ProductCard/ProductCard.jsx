@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import { useCart } from '../../contexts/CartContext'
+import { useCartAPI } from '../../hooks/useAPI'
 import styles from './ProductCard.module.css'
 
 function ProductCard({ product }) {
   const [showExtras, setShowExtras] = useState(false)
-  const { addToCart } = useCart()
+  const { addToCart } = useCartAPI()
 
   function handleAdd() {
     if (product.extras?.length) {

@@ -14,10 +14,12 @@ Resposta de Sucesso:
   "dados": [
     {
       "id": 1,
-      "nome": "Produto A",
-      "categoria": "categoria1",
-      "preco": 25.90,
-      "sku": "SKU-001"
+      "name": "Hambúrguer Clássico",
+      "category": "lanches",
+      "price": 25.90,
+      "sku": "SKU-001",
+      "image": "/assets/hamburguer.jpg",
+      "extras": ["Ponto Menos", "Ao Ponto", "Bem Passado"]
     }
   ]
 }

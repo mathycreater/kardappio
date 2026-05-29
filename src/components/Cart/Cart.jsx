@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom'
-import { useCart } from '../../contexts/CartContext'
+import { useCartAPI } from '../../hooks/useAPI'
 import styles from './Cart.module.css'
 
 function Cart() {
   const navigate = useNavigate()
-  const { cartItems, removeFromCart, cartMessage } = useCart()
+  const { cartItems, removeFromCart, cartMessage } = useCartAPI()
 
   if (!cartItems) return null
 
