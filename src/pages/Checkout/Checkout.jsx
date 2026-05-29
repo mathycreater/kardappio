@@ -1,9 +1,11 @@
 import { useNavigate } from 'react-router-dom'
+import { useCart } from '../../contexts/CartContext'
 import { useCheckout } from './useCheckout'
 import styles from './Checkout.module.css'
 
-export const Checkout = ({ cartItems }) => {
+export const Checkout = () => {
   const navigate = useNavigate()
+  const { cartItems } = useCart()
   const {
     loading,
     confirmed,

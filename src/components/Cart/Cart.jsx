@@ -1,8 +1,10 @@
 import { useNavigate } from 'react-router-dom'
+import { useCart } from '../../contexts/CartContext'
 import styles from './Cart.module.css'
 
-function Cart({ cartItems, removeFromCart, cartMessage }) {
+function Cart() {
   const navigate = useNavigate()
+  const { cartItems, removeFromCart, cartMessage } = useCart()
 
   if (!cartItems) return null
 

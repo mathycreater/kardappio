@@ -1,11 +1,8 @@
-import { useProducts } from './useProducts'
 import ProductCard from '../ProductCard/ProductCard'
 
 import styles from './Products.module.css'
 
-function Products({ addToCart }) {
-  const { products, loading } = useProducts()
-
+function Products({ products, loading }) {
   return (
     <section id="products" className={styles.products}>
 
@@ -24,11 +21,10 @@ function Products({ addToCart }) {
       ) : (
         <div className={styles['products-grid']}>
 
-          {products.map((product) => (
+          {products?.map((product) => (
             <ProductCard
               key={product.id}
               product={product}
-              addToCart={addToCart}
             />
           ))}
 
@@ -38,4 +34,4 @@ function Products({ addToCart }) {
   )
 }
 
-export default Products
+export default Products
