@@ -11,7 +11,8 @@ SELECT
     ip.produto_id,
     pr.nome AS nome_produto,
     pr.sku,
-    ip.quantidade
+    ip.quantidade,
+    ip.observacao
 FROM pedidos p
 INNER JOIN clientes c 
     ON p.cliente_id = c.id

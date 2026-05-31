@@ -3,7 +3,7 @@
 > ** NOTA DE ARQUITETURA E ESCOPO:**
 > É importante diferenciar as duas simulações presentes neste projeto de avaliação:
 > 
-> 1. **Frontend (React App):** Utiliza uma API mockada internamente (via custom hooks e `localStorage`) apenas para simular latência de rede e persistência visual do carrinho de compras para o usuário.
+> 1. **Frontend (React App):** Utiliza uma API mockada internamente (via custom hooks e `localStorage`) apenas para simular latência de rede e persistência visual do carrinho de compras para o usuário. O mock foi construído para demonstrar a jornada visual de compra (catálogo e montagem do carrinho). Ele foca estritamente nos dados dos Produtos, deixando a parte gerencial (Estoque, Identificação do Cliente, Status de Rastreio e Impostos) a cargo do sistema real ou do pipeline de dados
 > 2. **Pipeline de Integração (ETL):** Os endpoints documentados abaixo pertencem a um **sistema externo fictício**. Eles representam o destino final para onde a nossa ferramenta de integração (Smartconnector/N8N) envia os dados extraídos do banco de dados relacional.
 
 Este documento foca exclusivamente na **camada de integração**, contendo os endpoints, requisições e respostas esperadas do sistema externo.
@@ -54,8 +54,8 @@ Body (Request):
 {
   "cliente_id": 123,
   "itens": [
-    {"produto_id": 1, "quantidade": 2},
-    {"produto_id": 3, "quantidade": 1}
+    {"produto_id": 1, "quantidade": 2, "observacao": "Ao Ponto"},
+    {"produto_id": 3, "quantidade": 1, "observacao": "Temaki hot"}
   ],
   "data_entrega": "2024-01-25"
 }
@@ -91,7 +91,8 @@ Resposta de Sucesso:
         "produto_id": 1,
         "quantidade": 2,
         "preco_unitario": 25.90,
-        "total": 51.80
+        "total": 51.80,
+        "observacao": "Ao Ponto"
       }
     ],
     "total": 68.79

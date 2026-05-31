@@ -9,14 +9,18 @@ A página inicial foca na conversão e em demonstrar o valor da plataforma.
 <p align="center">
   <img src="screenshots/Hero.png" alt="Página Inicial do Kardappio" width="800">
 </p>
+
 ### Soluções e Produtos em Destaque
+
 Apresentação clara de funcionalidades (Integração, Gestão, Dashboard) e o catálogo de produtos integrado.
 (Isto é apenas uma demonstração, o sistema não inclui Dashboard e gestão, mas a possibilidade de integração e
 expansão.)
 <p align="center">
   <img src="screenshots/Feature%20&%20Products.png" alt="Funcionalidades e Produtos" width="800">
 </p>
+
 ### Fluxo de Pedido
+
 Experiência fluida desde a revisão do carrinho até a confirmação da compra.
 <p align="center">
   <img src="screenshots/Cart.png" alt="Carrinho de Compras" width="49%">

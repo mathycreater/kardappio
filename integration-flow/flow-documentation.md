@@ -37,7 +37,8 @@ SELECT
     ip.produto_id,
     pr.nome AS nome_produto,
     pr.sku,
-    ip.quantidade
+    ip.quantidade,
+    ip.observacao
 FROM pedidos p
 INNER JOIN clientes c ON p.cliente_id = c.id
 INNER JOIN itens_pedido ip ON p.id = ip.pedido_id
@@ -71,6 +72,10 @@ Objetivo: Converter o formato tabular retornado pela query SQL para a estrutura 
 Tipo: HTTP Request Node
 Objetivo: Realizar a requisição POST /pedidos enviando o payload preparado.
 
+### Etapa 7: Atualização de Estado (Update SQL)
+Tipo: Database Update Node
+Objetivo: Após receber a confirmação de sucesso (Status 201) da API externa, o fluxo executa um comando no banco de dados local para alterar o status do pedido de 'confirmado' para 'enviado'. Esse passo é essencial para garantir que o pipeline não extraia o mesmo pedido de novo nas próximas rodadas, prevenindo envio duplicado.
+
 
 ## Exemplos de Transformação de Dados
 
@@ -90,7 +95,8 @@ Como os dados chegam do banco relacional:
     "produto_id": 1,
     "nome_produto": "Produto A",
     "sku": "SKU-001",
-    "quantidade": 2
+    "quantidade": 2,
+    "observacao": "Ao Ponto"
   }
 ]
 ```
@@ -105,7 +111,8 @@ O formato final recebido pela API:
   "itens": [
     {
       "produto_id": 1,
-      "quantidade": 2
+      "quantidade": 2,
+      "observacao": "Ao Ponto"
     }
   ],
   "data_entrega": "2024-01-25"

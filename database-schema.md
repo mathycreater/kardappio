@@ -14,6 +14,8 @@ Tabela responsável por armazenar os itens disponíveis no cardápio.
 | categoria | VARCHAR(100)   | Categoria do produto  |
 | preco     | DECIMAL(10, 2) | Preço unitário        |
 | sku       | VARCHAR(50)    | Código SKU            |
+| imagem    | VARCHAR(255)   | Caminho da imagem     |
+| extras    | JSON           | Opções extras         |
 
 ### Tabela: clientes
 Armazena os dados básicos de contato e endereço dos clientes cadastrados.
@@ -49,6 +51,7 @@ Tabela pivô que relaciona os pedidos com os produtos selecionados no carrinho.
 | produto_id     | INT            | Referência ao produto          |
 | quantidade     | INT            | Quantidade do produto          |
 | preco_unitario | DECIMAL(10, 2) | Preço no momento da compra     |
+| observacao     | VARCHAR(255)   | Extra escolhido (ex: Ao ponto) |
 
 ## Relacionamentos
 
