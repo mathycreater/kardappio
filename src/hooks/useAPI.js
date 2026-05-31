@@ -11,11 +11,13 @@ export const useAPI = () => {
 export const useCartAPI = () => {
   const [cartItems, setCartItems] = useState([])
   const [cartMessage, setCartMessage] = useState('')
+  const [cartLoaded, setCartLoaded] = useState(false)
 
   const fetchCart = useCallback(async () => {
     await delay(300)
     const stored = localStorage.getItem('@kardappio:cart')
     setCartItems(stored ? JSON.parse(stored) : [])
+    setCartLoaded(true)
   }, [])
 
   useEffect(() => {
@@ -98,5 +100,5 @@ export const useCartAPI = () => {
     window.dispatchEvent(new Event('cart_updated'))
   }
 
-  return { cartItems, cartMessage, addToCart, removeFromCart }
+  return { cartItems, cartLoaded, cartMessage, addToCart, removeFromCart }
 }

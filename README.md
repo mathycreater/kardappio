@@ -2,6 +2,28 @@
 
 Este é o repositório da minha solução para a avaliação técnica. O projeto engloba o frontend da aplicação e o desenho da arquitetura de integração. Criei um E-commerce fictício para restaurantes. Um protótipo que poderia ser expandido para um Saas de cardápios ou ser utilizado como site completo de delivery.
 
+## Demonstração visual
+
+### A Primeira Impressão
+A página inicial foca na conversão e em demonstrar o valor da plataforma.
+<p align="center">
+  <img src="screenshots/Hero.png" alt="Página Inicial do Kardappio" width="800">
+</p>
+### Soluções e Produtos em Destaque
+Apresentação clara de funcionalidades (Integração, Gestão, Dashboard) e o catálogo de produtos integrado.
+(Isto é apenas uma demonstração, o sistema não inclui Dashboard e gestão, mas a possibilidade de integração e
+expansão.)
+<p align="center">
+  <img src="screenshots/Feature%20&%20Products.png" alt="Funcionalidades e Produtos" width="800">
+</p>
+### Fluxo de Pedido
+Experiência fluida desde a revisão do carrinho até a confirmação da compra.
+<p align="center">
+  <img src="screenshots/Cart.png" alt="Carrinho de Compras" width="49%">
+  &nbsp;
+  <img src="screenshots/Checkout.png" alt="Confirmação de Checkout" width="49%">
+</p>
+
 ## Como rodar localmente
 
 ```bash
@@ -10,6 +32,12 @@ cd seu-repositorio
 npm install
 npm run dev
 ```
+Este projeto foi desenvolvido na versão v24.15.0 do Node.js. Portanto, verifique sua versão com o comando:
+
+```bash
+node -v
+```
+Caso for anterior e/ou estiver tendo problemas de build, certifique-se de atualizar a versão do seu node para rodar o projeto.
 
 ## Arquitetura e Decisões do Frontend
 

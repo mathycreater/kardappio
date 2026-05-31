@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react'
-import { useAPI } from '../../hooks/useAPI'
+import { useState } from 'react'
 
 function getDeliveryEstimate(items) {
   const total = items.reduce((sum, item) => sum + item.quantity, 0)
@@ -10,29 +9,10 @@ function getDeliveryEstimate(items) {
 }
 
 export const useCheckout = (cartItems = []) => {
-  const { getItems } = useAPI()
-  const [loading, setLoading] = useState(false)
-  const [items, setItems] = useState([])
   const [address, setAddress] = useState('')
   const [confirmed, setConfirmed] = useState(false)
 
-  useEffect(() => {
-    const fetchItems = async () => {
-      try {
-        setLoading(true)
-        const response = await getItems()
-        setItems(response)
-      } catch (error) {
-        console.error('Erro ao buscar itens:', error)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    fetchItems()
-  }, [getItems])
-
-  const checkoutItems = cartItems.length > 0 ? cartItems : items
+  const checkoutItems = cartItems
 
   const total = checkoutItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
@@ -46,7 +26,6 @@ export const useCheckout = (cartItems = []) => {
   }
 
   return {
-    loading,
     confirmed,
     address,
     setAddress,

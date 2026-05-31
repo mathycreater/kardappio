@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useCartAPI } from '../../hooks/useAPI'
 import { useCheckout } from './useCheckout'
@@ -5,9 +6,8 @@ import styles from './Checkout.module.css'
 
 export const Checkout = () => {
   const navigate = useNavigate()
-  const { cartItems } = useCartAPI()
+  const { cartItems, cartLoaded } = useCartAPI()
   const {
-    loading,
     confirmed,
     address,
     setAddress,
@@ -17,7 +17,13 @@ export const Checkout = () => {
     handleConfirm
   } = useCheckout(cartItems)
 
-  if (loading) {
+  useEffect(() => {
+    if (cartLoaded && cartItems.length === 0) {
+      navigate('/')
+    }
+  }, [cartLoaded, cartItems, navigate])
+
+  if (!cartLoaded) {
     return (
       <div className={styles.loading}>
         <div className={styles['loading-bar']} />
